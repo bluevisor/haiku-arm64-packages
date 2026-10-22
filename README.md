@@ -69,4 +69,5 @@ The HaikuPorts patchsets
 are in the bootstrap repo under `patches/haikuports/`, plus `patches/cmake-4.4.4-*.patch`.
 
 Layout: `repo.info`, `repo` (binary index with each package's checksum),
-`repo.sha256`, `packages/*.hpkg`, served by GitHub Pages.
+`repo.sha256`, `packages/*.hpkg`, and an `index.html` package list, served by
+GitHub Pages.

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>haiku-arm64-packages</title>
+<style>
+:root { --bg: #fff; --fg: #1d1d1f; --muted: #6e6e73; --line: #e5e5ea; --code: #f5f5f7; --link: #0b62c4; }
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #161618; --fg: #ececf0; --muted: #9a9aa2; --line: #2e2e33; --code: #222226; --link: #6aaeff; }
+}
+body { margin: 0; background: var(--bg); color: var(--fg); font: 15px/1.5 -apple-system, system-ui, sans-serif; }
+main { max-width: 960px; margin: 0 auto; padding: 32px 16px 48px; }
+h1 { font-size: 24px; margin: 0 0 4px; }
+p { margin: 8px 0; }
+a { color: var(--link); }
+.muted { color: var(--muted); }
+pre, code { font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; background: var(--code); border-radius: 6px; }
+pre { padding: 12px 14px; overflow-x: auto; }
+code { padding: 1px 5px; }
+pre code { padding: 0; }
+.scroll { overflow-x: auto; margin-top: 20px; }
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 7px 10px 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); }
+td.n { white-space: nowrap; font-variant-numeric: tabular-nums; }
+</style>
+</head>
+<body>
+<main>
+<h1>haiku-arm64-packages</h1>
+<p class="muted">A <code>pkgman</code> repository of extra packages for Haiku arm64 (hrev60290), built by
+<a href="https://github.com/bluevisor/haiku-arm64-bootstrap">haiku-arm64-bootstrap</a>.</p>
+<pre><code>pkgman add-repo https://bluevisor.github.io/haiku-arm64-packages
+pkgman install ncurses6    # first: fixes the bootstrap terminfo path</code></pre>
+<p><code>pkgman</code> needs HTTPS for this, which stock Haiku arm64 lacks: install <code>openssl3</code> and the
+revision-3 <code>haiku</code>/<code>haiku_devel</code> packages from the
+<a href="https://github.com/bluevisor/haiku-arm64-bootstrap/blob/main/docs/guide.md#11-pkgman-over-https">bootstrap release</a> first.
+Per-package notes and sources: <a href="https://github.com/bluevisor/haiku-arm64-packages#readme">README</a>.</p>
+<div class="scroll"><table>
+<thead><tr><th>Package</th><th>Version</th><th>Summary</th><th>License</th><th>Size</th></tr></thead>
+<tbody>
+<tr><td><a href="packages/bzip2-1.0.8-1-arm64.hpkg">bzip2</a></td><td class="n">1.0.8-1</td><td>A high-quality data compressor</td><td>bzip2</td><td class="n">92KiB</td></tr>
+<tr><td><a href="packages/ca_root_certificates-2026_10_20-1-any.hpkg">ca_root_certificates</a></td><td class="n">2026_10_20-1</td><td>Bundle of CA root certificates</td><td>MPL v2.0</td><td class="n">115KiB</td></tr>
+<tr><td><a href="packages/cmake-4.4.4-1-arm64.hpkg">cmake</a></td><td class="n">4.4.4-1</td><td>Cross platform Make</td><td>CMake</td><td class="n">25MiB</td></tr>
+<tr><td><a href="packages/curl-8.23.0-1-arm64.hpkg">curl</a></td><td class="n">8.23.0-1</td><td>A command-line tool and library for transferring data with URLs</td><td>Curl</td><td class="n">1.1MiB</td></tr>
+<tr><td><a href="packages/diffutils-3.12-1-arm64.hpkg">diffutils</a></td><td class="n">3.12-1</td><td>Several programs for finding differences between files</td><td>GNU GPL v3</td><td class="n">245KiB</td></tr>
+<tr><td><a href="packages/git-2.56.0-1-arm64.hpkg">git</a></td><td class="n">2.56.0-1</td><td>Fast, scalable, distributed revision control system</td><td>GNU GPL v2</td><td class="n">15MiB</td></tr>
+<tr><td><a href="packages/gzip-1.15-1-arm64.hpkg">gzip</a></td><td class="n">1.15-1</td><td>The GNU data compression program</td><td>GNU GPL v3</td><td class="n">90KiB</td></tr>
+<tr><td><a href="packages/libiconv-1.18-1-arm64.hpkg">libiconv</a></td><td class="n">1.18-1</td><td>GNU character set conversion library</td><td>GNU LGPL v2.1, GNU GPL v3</td><td class="n">753KiB</td></tr>
+<tr><td><a href="packages/nano-9.1-1-arm64.hpkg">nano</a></td><td class="n">9.1-1</td><td>A small and friendly text editor</td><td>GNU GPL v3</td><td class="n">300KiB</td></tr>
+<tr><td><a href="packages/ncurses6-6.6_release-1-arm64.hpkg">ncurses6</a></td><td class="n">6.6_release-1</td><td>New curses library</td><td>MIT</td><td class="n">1.6MiB</td></tr>
+<tr><td><a href="packages/nghttp2-1.63.0-1-arm64.hpkg">nghttp2</a></td><td class="n">1.63.0-1</td><td>HTTP/2 C library</td><td>MIT</td><td class="n">164KiB</td></tr>
+<tr><td><a href="packages/ninja-1.13.2-1-arm64.hpkg">ninja</a></td><td class="n">1.13.2-1</td><td>A small build system with a focus on speed</td><td>Apache v2</td><td class="n">179KiB</td></tr>
+<tr><td><a href="packages/openssh-10.6p1-1-arm64.hpkg">openssh</a></td><td class="n">10.6p1-1</td><td>Secure Shell (SSH) client and server</td><td>BSD (2-clause), BSD (3-clause)</td><td class="n">3.1MiB</td></tr>
+<tr><td><a href="packages/openssl3-3.5.9-2-arm64.hpkg">openssl3</a></td><td class="n">3.5.9-2</td><td>Secure Socket Layer toolkit</td><td>Apache v2</td><td class="n">2.7MiB</td></tr>
+<tr><td><a href="packages/patch-2.8-1-arm64.hpkg">patch</a></td><td class="n">2.8-1</td><td>Utility to apply diffs to files</td><td>GNU GPL v3</td><td class="n">96KiB</td></tr>
+<tr><td><a href="packages/perl-5.42.2-1-arm64.hpkg">perl</a></td><td class="n">5.42.2-1</td><td>Larry Wall's Practical Extraction and Report Language</td><td>GNU GPL v1, Artistic</td><td class="n">15MiB</td></tr>
+<tr><td><a href="packages/pkgconf-3.0.10-1-arm64.hpkg">pkgconf</a></td><td class="n">3.0.10-1</td><td>A lightweight pkg-config replacement</td><td>ISC</td><td class="n">123KiB</td></tr>
+<tr><td><a href="packages/python3.12-3.12.15-1-arm64.hpkg">python3.12</a></td><td class="n">3.12.15-1</td><td>An interpreted, interactive, object-oriented programming language</td><td>Python</td><td class="n">22MiB</td></tr>
+<tr><td><a href="packages/sqlite-3.53.4.0-1-arm64.hpkg">sqlite</a></td><td class="n">3.53.4.0-1</td><td>A self-contained, serverless SQL database engine</td><td>Public Domain</td><td class="n">1.7MiB</td></tr>
+<tr><td><a href="packages/tar-1.35-1-arm64.hpkg">tar</a></td><td class="n">1.35-1</td><td>Saves and restores files to/from a tape or disk archive</td><td>GNU GPL v3</td><td class="n">448KiB</td></tr>
+<tr><td><a href="packages/unzip-6.10c23-1-arm64.hpkg">unzip</a></td><td class="n">6.10c23-1</td><td>Info-ZIP's unzip extractor</td><td>Info-ZIP</td><td class="n">205KiB</td></tr>
+<tr><td><a href="packages/xz_utils-5.8.4-1-arm64.hpkg">xz_utils</a></td><td class="n">5.8.4-1</td><td>Free general-purpose data compression software</td><td>BSD (0-clause), GNU GPL v2</td><td class="n">307KiB</td></tr>
+<tr><td><a href="packages/zip-3.0-1-arm64.hpkg">zip</a></td><td class="n">3.0-1</td><td>Info-ZIP's zip archiver</td><td>Info-ZIP</td><td class="n">271KiB</td></tr>
+<tr><td><a href="packages/zstd-1.5.7-1-arm64.hpkg">zstd</a></td><td class="n">1.5.7-1</td><td>Zstandard, a fast real-time compression algorithm</td><td>BSD (3-clause), GNU GPL v2</td><td class="n">959KiB</td></tr>
+</tbody>
+</table></div>
+<p class="muted">24 packages · arm64 only, zlib-compressed ·
+<a href="repo.info">repo.info</a> · <a href="repo.sha256">repo.sha256</a></p>
+</main>
+</body>
+</html>
