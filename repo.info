@@ -1,0 +1,7 @@
+name haiku-arm64-bootstrap
+vendor "haiku-arm64-bootstrap"
+summary "Extra packages for Haiku arm64 (github.com/bluevisor/haiku-arm64-bootstrap)"
+priority 1
+baseurl https://bluevisor.github.io/haiku-arm64-packages
+identifier tag:bluevisor.github.io,2026:repositories/haiku-arm64-packages/arm64
+architecture arm64
