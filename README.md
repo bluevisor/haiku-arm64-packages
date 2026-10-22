@@ -30,7 +30,7 @@ curses fail with `ncurses: cannot initialize terminal type`. The version is
 `6.6_release` because Haiku's version order puts `6.6` below `6.6_bootstrap`.
 
 `pkgman` needs HTTPS for this, which stock Haiku arm64 does not have:
-install the `openssl3` + revision-4 `haiku`/`haiku_devel` packages from the
+install the `openssl3` + revision-5 `haiku`/`haiku_devel` packages from the
 [bootstrap release](https://github.com/bluevisor/haiku-arm64-bootstrap/releases/tag/v2026.10.22-hrev60290)
 first ([guide step 11](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/main/docs/guide.md#11-pkgman-over-https)).
 
