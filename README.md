@@ -4,14 +4,19 @@ A `pkgman` repository of extra packages for **Haiku arm64**. The arm64 nightly
 only knows the ~25 HaikuPorts bootstrap packages baked into the image, and
 upstream publishes no arm64 HaikuPorts index. These packages are cross-built by
 [haiku-arm64-bootstrap](https://github.com/bluevisor/haiku-arm64-bootstrap)
-(`scripts/container/build-core-tools.sh`, index from `make-package-repo.sh`),
-following the HaikuPorts recipes.
+(`scripts/container/build-{core-tools,dev-tools,stack}.sh`, Perl natively,
+index from `make-package-repo.sh`), following the HaikuPorts recipes.
 
 ```sh
 pkgman add-repo https://bluevisor.github.io/haiku-arm64-packages
 pkgman install diffutils patch tar gzip xz_utils zstd pkgconf
 pkgman install bzip2 zip unzip nano ninja cmake    # cmake pulls in libiconv
+pkgman install curl git openssh python3.12 perl   # + openssl3, nghttp2, sqlite, ca_root_certificates
 ```
+
+Replacing a hand-installed `non-packaged` copy of curl/git/OpenSSH/Python/Perl?
+Install these first, then move the old files away: they shadow the packages
+(see [guide step 13](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/main/docs/guide.md#13-from-non-packaged-to-packages)).
 
 **ncurses programs (nano, `clear`, Python curses) need `TERMINFO_DIRS`** on
 arm64. The HaikuPorts bootstrap `ncurses6` was built with the terminfo path
@@ -45,12 +50,24 @@ first ([guide step 11](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/m
 | ninja | 1.13.2 | Apache v2 | |
 | cmake | 4.4.4 | CMake (BSD 3-clause) | ctest, cpack; bundled curl/libarchive/libuv; HTTPS downloads use `CARootCertificates.pem` |
 | libiconv | 1.18 | GNU LGPL v2.1, GNU GPL v3 (iconv tool) | Haiku's libroot has no iconv |
+| ca_root_certificates | 2026_10_20 | MPL v2.0 | curl.se Mozilla bundle as `data/ssl/CARootCertificates.pem`; zlib (HaikuPorts' is zstd) |
+| openssl3 | 3.5.9 rev 2 | Apache v2 | HaikuPorts patchset; `OPENSSLDIR=/boot/system/data/ssl`, default CA file `CARootCertificates.pem`; replaces the release's rev 1 |
+| nghttp2 | 1.63.0 | MIT | library only |
+| curl | 8.23.0 | Curl | OpenSSL, HTTP/2, zlib; replaces the bootstrap curl (no TLS) |
+| git | 2.56.0 | GNU GPL v2 | HTTPS; no Perl/Python/Tcl extras |
+| openssh | 10.6p1 | BSD | with OpenSSL (RSA/ECDSA); creates the `sshd` privsep user on install; not autostarted |
+| sqlite | 3.53.4.0 | Public Domain | lib + `sqlite3` shell |
+| python3.12 | 3.12.15 | Python | ssl, ctypes, curses, sqlite3, bz2, lzma; `python3 -m ensurepip` → non-packaged |
+| perl | 5.42.2 | GNU GPL v1 / Artistic | threads, shared libperl; built natively |
 
 Built for hrev60290, arm64 only. Packages are zlib-compressed: the arm64
 packagefs cannot read zstd-compressed packages. Libraries and headers ship in
 the main package (there are no separate `_devel` packages).
 
-Exact upstream sources are in [`sources/`](sources); the HaikuPorts patchsets
+Exact upstream sources are in [`sources/`](sources), except openssl, curl,
+git, openssh, Python and Perl, whose identical tarballs are `sources-*` assets of the
+[bootstrap release](https://github.com/bluevisor/haiku-arm64-bootstrap/releases/tag/v2026.10.22-hrev60290).
+The HaikuPorts patchsets
 are in the bootstrap repo under `patches/haikuports/`, plus `patches/cmake-4.4.4-*.patch`.
 
 Layout: `repo.info`, `repo` (binary index with each package's checksum),
