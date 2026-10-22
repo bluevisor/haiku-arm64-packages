@@ -51,7 +51,7 @@ packagefs cannot read zstd-compressed packages. Libraries and headers ship in
 the main package (there are no separate `_devel` packages).
 
 Exact upstream sources are in [`sources/`](sources); the HaikuPorts patchsets
-are in the bootstrap repo under `patches/haikuports/`.
+are in the bootstrap repo under `patches/haikuports/`, plus `patches/cmake-4.4.4-*.patch`.
 
 Layout: `repo.info`, `repo` (binary index with each package's checksum),
 `repo.sha256`, `packages/*.hpkg`, served by GitHub Pages.
