@@ -4,7 +4,7 @@ A `pkgman` repository of extra packages for **Haiku arm64**. The arm64 nightly
 only knows the ~25 HaikuPorts bootstrap packages baked into the image, and
 upstream publishes no arm64 HaikuPorts index. These packages are cross-built by
 [haiku-arm64-bootstrap](https://github.com/bluevisor/haiku-arm64-bootstrap)
-(`scripts/container/build-{core-tools,dev-tools,stack}.sh`, Perl natively,
+(`scripts/container/build-{core-tools,dev-tools,stack,make}.sh`, Perl and Node.js natively,
 index from `make-package-repo.sh`), following the HaikuPorts recipes.
 
 ```sh
@@ -13,6 +13,7 @@ pkgman install ncurses6                            # fixes the bootstrap terminf
 pkgman install diffutils patch tar gzip xz_utils zstd pkgconf
 pkgman install bzip2 zip unzip nano ninja cmake    # cmake pulls in libiconv
 pkgman install curl git openssh python3.12 perl   # + openssl3, nghttp2, sqlite, ca_root_certificates
+pkgman install nodejs24 make                       # Node.js 24 + npm; make with CXX = g++ for node-gyp
 ```
 
 Replacing a hand-installed `non-packaged` copy of curl/git/OpenSSH/Python/Perl?
@@ -57,6 +58,8 @@ first ([guide step 11](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/m
 | python3.12 | 3.12.15 | Python | ssl, ctypes, curses, sqlite3, bz2, lzma; `python3 -m ensurepip` → non-packaged |
 | perl | 5.42.2 | GNU GPL v1 / Artistic | threads, shared libperl; built natively |
 | ncurses6 | 6.6_release | MIT | replaces the bootstrap ncurses6 (wrong terminfo path); terminfo database in `data/terminfo` |
+| make | 4.4.1_release | GNU GPL v3 | replaces the bootstrap make, whose built-in `CXX` is the cross compiler's name |
+| nodejs24 | 24.21.0 | MIT | npm 11.19.0, corepack; bundled V8, ICU (full), libuv, c-ares; links openssl3; `npm -g` → `/boot/system/non-packaged`; built natively |
 
 Built for hrev60290, arm64 only. Packages are zlib-compressed: the arm64
 packagefs cannot read zstd-compressed packages. Libraries and headers ship in
@@ -64,9 +67,13 @@ the main package (there are no separate `_devel` packages).
 
 Exact upstream sources are in [`sources/`](sources), except openssl, curl,
 git, openssh, Python and Perl, whose identical tarballs are `sources-*` assets of the
-[bootstrap release](https://github.com/bluevisor/haiku-arm64-bootstrap/releases/tag/v2026.10.22-hrev60290).
+[bootstrap release](https://github.com/bluevisor/haiku-arm64-bootstrap/releases/tag/v2026.10.22-hrev60290),
+and Node.js, which is the nodejs.org tarball
+[`node-v24.21.0.tar.gz`](https://nodejs.org/dist/v24.21.0/node-v24.21.0.tar.gz)
+(SHA-256 `622424efb5dc0c26c93fbb619ff10737ee289c605b837c88778e186925d82777`).
 The HaikuPorts patchsets
-are in the bootstrap repo under `patches/haikuports/`, plus `patches/cmake-4.4.4-*.patch`.
+are in the bootstrap repo under `patches/haikuports/`, plus `patches/cmake-4.4.4-*.patch`
+and `patches/haikuports/nodejs-24.21.0-arm64.patch`.
 
 Layout: `repo.info`, `repo` (binary index with each package's checksum),
 `repo.sha256`, `packages/*.hpkg`, and an `index.html` package list, served by
