@@ -9,6 +9,7 @@ index from `make-package-repo.sh`), following the HaikuPorts recipes.
 
 ```sh
 pkgman add-repo https://bluevisor.github.io/haiku-arm64-packages
+pkgman install ncurses6                            # fixes the bootstrap terminfo path
 pkgman install diffutils patch tar gzip xz_utils zstd pkgconf
 pkgman install bzip2 zip unzip nano ninja cmake    # cmake pulls in libiconv
 pkgman install curl git openssh python3.12 perl   # + openssl3, nghttp2, sqlite, ca_root_certificates
@@ -18,16 +19,12 @@ Replacing a hand-installed `non-packaged` copy of curl/git/OpenSSH/Python/Perl?
 Install these first, then move the old files away: they shadow the packages
 (see [guide step 13](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/main/docs/guide.md#13-from-non-packaged-to-packages)).
 
-**ncurses programs (nano, `clear`, Python curses) need `TERMINFO_DIRS`** on
-arm64. The HaikuPorts bootstrap `ncurses6` was built with the terminfo path
-`/packages/ncurses6_bootstrap-6.6-1/.self/data/terminfo`, but the package
-mounts as `ncurses6-6.6_bootstrap-1`, so every lookup fails with
-`ncurses: cannot initialize terminal type`. Add this to
-`~/config/settings/boot/UserSetupEnvironment` (and to sshd's `SetEnv`):
-
-```sh
-export TERMINFO_DIRS="/boot/home/config/non-packaged/data/terminfo:/boot/home/config/data/terminfo:/boot/system/non-packaged/data/terminfo:/boot/system/data/terminfo"
-```
+**Install `ncurses6` from here first** (`pkgman install ncurses6`, version
+`6.6_release`). It replaces the HaikuPorts arm64 bootstrap `ncurses6`, whose
+built-in terminfo path is `/packages/ncurses6_bootstrap-6.6-1/.self/data/terminfo`.
+That package mounts as `ncurses6-6.6_bootstrap-1`, so nano, `clear` and Python
+curses fail with `ncurses: cannot initialize terminal type`. The version is
+`6.6_release` because Haiku's version order puts `6.6` below `6.6_bootstrap`.
 
 `pkgman` needs HTTPS for this, which stock Haiku arm64 does not have:
 install the `openssl3` + revision-3 `haiku`/`haiku_devel` packages from the
@@ -46,7 +43,7 @@ first ([guide step 11](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/m
 | bzip2 | 1.0.8 | bzip2 | bzip2, bzcat, bzgrep, libbz2 + headers; `tar -j` |
 | zip | 3.0 | Info-ZIP | stores Haiku file attributes; `-Z bzip2` |
 | unzip | 6.10c23 | Info-ZIP | Info-ZIP beta, as HaikuPorts ships; restores attributes; no iconv mapping |
-| nano | 9.1 | GNU GPL v3 | needs `TERMINFO_DIRS`, see above |
+| nano | 9.1 | GNU GPL v3 | needs our `ncurses6`, see above |
 | ninja | 1.13.2 | Apache v2 | |
 | cmake | 4.4.4 | CMake (BSD 3-clause) | ctest, cpack; bundled curl/libarchive/libuv; HTTPS downloads use `CARootCertificates.pem` |
 | libiconv | 1.18 | GNU LGPL v2.1, GNU GPL v3 (iconv tool) | Haiku's libroot has no iconv |
@@ -59,6 +56,7 @@ first ([guide step 11](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/m
 | sqlite | 3.53.4.0 | Public Domain | lib + `sqlite3` shell |
 | python3.12 | 3.12.15 | Python | ssl, ctypes, curses, sqlite3, bz2, lzma; `python3 -m ensurepip` → non-packaged |
 | perl | 5.42.2 | GNU GPL v1 / Artistic | threads, shared libperl; built natively |
+| ncurses6 | 6.6_release | MIT | replaces the bootstrap ncurses6 (wrong terminfo path); terminfo database in `data/terminfo` |
 
 Built for hrev60290, arm64 only. Packages are zlib-compressed: the arm64
 packagefs cannot read zstd-compressed packages. Libraries and headers ship in
