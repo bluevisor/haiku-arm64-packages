@@ -9,6 +9,8 @@ index from `make-package-repo.sh`), following the HaikuPorts recipes.
 
 ```sh
 pkgman add-repo https://bluevisor.github.io/haiku-arm64-packages
+pkgman refresh haiku-arm64-bootstrap               # later, for new packages: a plain refresh
+                                                   # stops at the HaikuPorts "Resource not found"
 pkgman install ncurses6                            # fixes the bootstrap terminfo path
 pkgman install diffutils patch tar gzip xz_utils zstd pkgconf
 pkgman install bzip2 zip unzip nano ninja cmake    # cmake pulls in libiconv
