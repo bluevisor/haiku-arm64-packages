@@ -4,7 +4,7 @@ A `pkgman` repository of extra packages for **Haiku arm64**. The arm64 nightly
 only knows the ~25 HaikuPorts bootstrap packages baked into the image, and
 upstream publishes no arm64 HaikuPorts index. These packages are cross-built by
 [haiku-arm64-bootstrap](https://github.com/bluevisor/haiku-arm64-bootstrap)
-(`scripts/container/build-{core-tools,dev-tools,stack,make}.sh`, Perl and Node.js natively,
+(`scripts/container/build-{core-tools,dev-tools,stack,make,everyday-tools,ffmpeg}.sh`, Perl and Node.js natively,
 index from `make-package-repo.sh`), following the HaikuPorts recipes.
 
 ```sh
@@ -16,7 +16,14 @@ pkgman install diffutils patch tar gzip xz_utils zstd pkgconf
 pkgman install bzip2 zip unzip nano ninja cmake    # cmake pulls in libiconv
 pkgman install curl git openssh python3.12 perl   # + openssl3, nghttp2, sqlite, ca_root_certificates
 pkgman install nodejs24 make                       # Node.js 24 + npm; make with CXX = g++ for node-gyp
+pkgman install which file wget rsync vim tmux jq bc netcat p7zip unrar tcpdump
+pkgman install ffmpeg6_tools                       # ffmpeg, ffprobe + ffmpeg6, lame, dav1d
 ```
+
+MediaPlayer and the other media kit apps decode through Haiku's ffmpeg media
+plugin, which uses the media kit's private API and so has to match the
+installed hrev. It isn't in this repo: `build-ffmpeg.sh` in the bootstrap repo
+builds it as `haiku_ffmpeg_plugin` from the hrev's source tree.
 
 Replacing a hand-installed `non-packaged` copy of curl/git/OpenSSH/Python/Perl?
 Install these first, then move the old files away: they shadow the packages
@@ -62,10 +69,29 @@ first ([guide step 11](https://github.com/bluevisor/haiku-arm64-bootstrap/blob/m
 | ncurses6 | 6.6_release | MIT | replaces the bootstrap ncurses6 (wrong terminfo path); terminfo database in `data/terminfo` |
 | make | 4.4.1_release | GNU GPL v3 | replaces the bootstrap make, whose built-in `CXX` is the cross compiler's name |
 | nodejs24 | 24.21.0 | MIT | npm 11.19.0, corepack; bundled V8, ICU (full), libuv, c-ares; links openssl3; `npm -g` → `/boot/system/non-packaged`; built natively |
+| which | 2.21 | GNU GPL v3 | |
+| file | 5.43 | BSD (2-clause) | libmagic + headers, `magic.mgc` |
+| wget | 1.24.5 | GNU GPL v3 | OpenSSL; CA bundle set in `settings/wgetrc` |
+| rsync | 3.2.7 | GNU GPL v3 | `-X` keeps Haiku file attributes |
+| vim | 9.1.1618 | Vim | vi, xxd, vimtutor; runtime files and syntax highlighting |
+| libevent | 2.1.13 | BSD (3-clause) | for tmux; `lib:libevent_2.1` |
+| tmux | 3.1c | ISC | the HaikuPorts recipe's version |
+| jq | 1.8.1 | MIT | bundled oniguruma |
+| bc | 1.07.1 | GNU GPL v3 | bc, dc |
+| netcat | 1.10 | Public Domain | `nc`; source is Debian's repack of `nc110.tgz` |
+| p7zip | 17.05 | GNU LGPL v2.1 | 7z, 7za, 7zr; reads RAR |
+| unrar | 6.2.10 | UnRAR | |
+| libpcap | 1.11.0 | BSD (3-clause) | for tcpdump |
+| tcpdump | 4.99.7 | BSD (3-clause) | captures on `loop` and the network card |
+| lame | 3.100 | GNU LGPL v2 | lame, libmp3lame + headers |
+| dav1d | 1.5.4 | BSD (2-clause) | AV1 decoder, NEON assembly; dav1d, libdav1d + headers |
+| ffmpeg6 | 6.1.6 | GNU LGPL v3 | HaikuPorts patchset; FFmpeg's own codecs (AAC, MP3, FLAC, Opus, Vorbis, H.264, HEVC, VP8/9, …) + LAME, dav1d, OpenSSL; split like the HaikuPorts recipe into `ffmpeg6` (libraries), `ffmpeg6_devel` and `ffmpeg6_tools` (ffmpeg, ffprobe; no ffplay: no SDL2) |
 
-Built for hrev60290, arm64 only. Packages are zlib-compressed: the arm64
+Built for hrev60290, arm64 only; the tools and codecs added in November were
+tested on hrev60368. Packages are zlib-compressed: the arm64
 packagefs cannot read zstd-compressed packages. Libraries and headers ship in
-the main package (there are no separate `_devel` packages).
+the main package (there are no separate `_devel` packages), except FFmpeg,
+whose `ffmpeg6_devel` is what Haiku's build looks for.
 
 Exact upstream sources are in [`sources/`](sources), except openssl, curl,
 git, openssh, Python and Perl, whose identical tarballs are `sources-*` assets of the

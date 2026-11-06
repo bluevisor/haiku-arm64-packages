@@ -34,41 +34,60 @@ td.n { white-space: nowrap; font-variant-numeric: tabular-nums; }
 <pre><code>pkgman add-repo https://bluevisor.github.io/haiku-arm64-packages
 pkgman install ncurses6    # first: fixes the bootstrap terminfo path</code></pre>
 <p><code>pkgman</code> needs HTTPS for this, which stock Haiku arm64 lacks: install <code>openssl3</code> and the
-revision-6 <code>haiku</code>/<code>haiku_devel</code> packages from the
+revision-8 <code>haiku</code>/<code>haiku_devel</code> packages from the
 <a href="https://github.com/bluevisor/haiku-arm64-bootstrap/blob/main/docs/guide.md#11-pkgman-over-https">bootstrap release</a> first.
 Per-package notes and sources: <a href="https://github.com/bluevisor/haiku-arm64-packages#readme">README</a>.</p>
 <div class="scroll"><table>
 <thead><tr><th>Package</th><th>Version</th><th>Summary</th><th>License</th><th>Size</th></tr></thead>
 <tbody>
+<tr><td><a href="packages/bc-1.07.1-1-arm64.hpkg">bc</a></td><td class="n">1.07.1-1</td><td>An arbitrary precision calculator language</td><td>GNU GPL v3</td><td class="n">93KiB</td></tr>
 <tr><td><a href="packages/bzip2-1.0.8-1-arm64.hpkg">bzip2</a></td><td class="n">1.0.8-1</td><td>A high-quality data compressor</td><td>bzip2</td><td class="n">92KiB</td></tr>
 <tr><td><a href="packages/ca_root_certificates-2026_10_20-1-any.hpkg">ca_root_certificates</a></td><td class="n">2026_10_20-1</td><td>Bundle of CA root certificates</td><td>MPL v2.0</td><td class="n">115KiB</td></tr>
 <tr><td><a href="packages/cmake-4.4.4-1-arm64.hpkg">cmake</a></td><td class="n">4.4.4-1</td><td>Cross platform Make</td><td>CMake</td><td class="n">25MiB</td></tr>
 <tr><td><a href="packages/curl-8.23.0-1-arm64.hpkg">curl</a></td><td class="n">8.23.0-1</td><td>A command-line tool and library for transferring data with URLs</td><td>Curl</td><td class="n">1.1MiB</td></tr>
+<tr><td><a href="packages/dav1d-1.5.4-1-arm64.hpkg">dav1d</a></td><td class="n">1.5.4-1</td><td>AV1 cross-platform decoder</td><td>BSD (2-clause)</td><td class="n">417KiB</td></tr>
 <tr><td><a href="packages/diffutils-3.12-1-arm64.hpkg">diffutils</a></td><td class="n">3.12-1</td><td>Several programs for finding differences between files</td><td>GNU GPL v3</td><td class="n">245KiB</td></tr>
+<tr><td><a href="packages/ffmpeg6-6.1.6-1-arm64.hpkg">ffmpeg6</a></td><td class="n">6.1.6-1</td><td>Audio and video recording, conversion, and streaming library</td><td>GNU LGPL v3</td><td class="n">8.7MiB</td></tr>
+<tr><td><a href="packages/ffmpeg6_devel-6.1.6-1-arm64.hpkg">ffmpeg6_devel</a></td><td class="n">6.1.6-1</td><td>FFmpeg 6 development files</td><td>GNU LGPL v3</td><td class="n">350KiB</td></tr>
+<tr><td><a href="packages/ffmpeg6_tools-6.1.6-1-arm64.hpkg">ffmpeg6_tools</a></td><td class="n">6.1.6-1</td><td>FFmpeg 6 command line tools</td><td>GNU LGPL v3</td><td class="n">191KiB</td></tr>
+<tr><td><a href="packages/file-5.43-1-arm64.hpkg">file</a></td><td class="n">5.43-1</td><td>Determines file types</td><td>BSD (2-clause)</td><td class="n">474KiB</td></tr>
 <tr><td><a href="packages/git-2.56.0-1-arm64.hpkg">git</a></td><td class="n">2.56.0-1</td><td>Fast, scalable, distributed revision control system</td><td>GNU GPL v2</td><td class="n">15MiB</td></tr>
 <tr><td><a href="packages/gzip-1.15-1-arm64.hpkg">gzip</a></td><td class="n">1.15-1</td><td>The GNU data compression program</td><td>GNU GPL v3</td><td class="n">90KiB</td></tr>
+<tr><td><a href="packages/jq-1.8.1-1-arm64.hpkg">jq</a></td><td class="n">1.8.1-1</td><td>Command-line JSON processor</td><td>MIT</td><td class="n">396KiB</td></tr>
+<tr><td><a href="packages/lame-3.100-1-arm64.hpkg">lame</a></td><td class="n">3.100-1</td><td>LAME Ain't an MP3 Encoder</td><td>GNU LGPL v2</td><td class="n">264KiB</td></tr>
+<tr><td><a href="packages/libevent-2.1.13-1-arm64.hpkg">libevent</a></td><td class="n">2.1.13-1</td><td>An event notification library</td><td>BSD (3-clause)</td><td class="n">342KiB</td></tr>
 <tr><td><a href="packages/libiconv-1.18-1-arm64.hpkg">libiconv</a></td><td class="n">1.18-1</td><td>GNU character set conversion library</td><td>GNU LGPL v2.1, GNU GPL v3</td><td class="n">753KiB</td></tr>
+<tr><td><a href="packages/libpcap-1.11.0-1-arm64.hpkg">libpcap</a></td><td class="n">1.11.0-1</td><td>Packet capture library</td><td>BSD (3-clause)</td><td class="n">213KiB</td></tr>
 <tr><td><a href="packages/make-4.4.1_release-1-arm64.hpkg">make</a></td><td class="n">4.4.1_release-1</td><td>Standard tool to compile source trees</td><td>GNU GPL v3</td><td class="n">304KiB</td></tr>
 <tr><td><a href="packages/nano-9.1-1-arm64.hpkg">nano</a></td><td class="n">9.1-1</td><td>A small and friendly text editor</td><td>GNU GPL v3</td><td class="n">300KiB</td></tr>
 <tr><td><a href="packages/ncurses6-6.6_release-1-arm64.hpkg">ncurses6</a></td><td class="n">6.6_release-1</td><td>New curses library</td><td>MIT</td><td class="n">1.6MiB</td></tr>
+<tr><td><a href="packages/netcat-1.10-1-arm64.hpkg">netcat</a></td><td class="n">1.10-1</td><td>Reads and writes data across network connections</td><td>Public Domain</td><td class="n">35KiB</td></tr>
 <tr><td><a href="packages/nghttp2-1.63.0-1-arm64.hpkg">nghttp2</a></td><td class="n">1.63.0-1</td><td>HTTP/2 C library</td><td>MIT</td><td class="n">164KiB</td></tr>
 <tr><td><a href="packages/ninja-1.13.2-1-arm64.hpkg">ninja</a></td><td class="n">1.13.2-1</td><td>A small build system with a focus on speed</td><td>Apache v2</td><td class="n">179KiB</td></tr>
 <tr><td><a href="packages/nodejs24-24.21.0-1-arm64.hpkg">nodejs24</a></td><td class="n">24.21.0-1</td><td>A JavaScript runtime built on Chrome's V8 Engine</td><td>MIT</td><td class="n">38MiB</td></tr>
 <tr><td><a href="packages/openssh-10.6p1-1-arm64.hpkg">openssh</a></td><td class="n">10.6p1-1</td><td>Secure Shell (SSH) client and server</td><td>BSD (2-clause), BSD (3-clause)</td><td class="n">3.1MiB</td></tr>
 <tr><td><a href="packages/openssl3-3.5.9-2-arm64.hpkg">openssl3</a></td><td class="n">3.5.9-2</td><td>Secure Socket Layer toolkit</td><td>Apache v2</td><td class="n">2.7MiB</td></tr>
+<tr><td><a href="packages/p7zip-17.05-1-arm64.hpkg">p7zip</a></td><td class="n">17.05-1</td><td>File archiver with a high compression ratio</td><td>GNU LGPL v2.1</td><td class="n">4.2MiB</td></tr>
 <tr><td><a href="packages/patch-2.8-1-arm64.hpkg">patch</a></td><td class="n">2.8-1</td><td>Utility to apply diffs to files</td><td>GNU GPL v3</td><td class="n">96KiB</td></tr>
 <tr><td><a href="packages/perl-5.42.2-1-arm64.hpkg">perl</a></td><td class="n">5.42.2-1</td><td>Larry Wall's Practical Extraction and Report Language</td><td>GNU GPL v1, Artistic</td><td class="n">15MiB</td></tr>
 <tr><td><a href="packages/pkgconf-3.0.10-1-arm64.hpkg">pkgconf</a></td><td class="n">3.0.10-1</td><td>A lightweight pkg-config replacement</td><td>ISC</td><td class="n">123KiB</td></tr>
 <tr><td><a href="packages/python3.12-3.12.15-1-arm64.hpkg">python3.12</a></td><td class="n">3.12.15-1</td><td>An interpreted, interactive, object-oriented programming language</td><td>Python</td><td class="n">22MiB</td></tr>
+<tr><td><a href="packages/rsync-3.2.7-1-arm64.hpkg">rsync</a></td><td class="n">3.2.7-1</td><td>Fast incremental file transfer</td><td>GNU GPL v3</td><td class="n">351KiB</td></tr>
 <tr><td><a href="packages/sqlite-3.53.4.0-1-arm64.hpkg">sqlite</a></td><td class="n">3.53.4.0-1</td><td>A self-contained, serverless SQL database engine</td><td>Public Domain</td><td class="n">1.7MiB</td></tr>
 <tr><td><a href="packages/tar-1.35-1-arm64.hpkg">tar</a></td><td class="n">1.35-1</td><td>Saves and restores files to/from a tape or disk archive</td><td>GNU GPL v3</td><td class="n">448KiB</td></tr>
+<tr><td><a href="packages/tcpdump-4.99.7-1-arm64.hpkg">tcpdump</a></td><td class="n">4.99.7-1</td><td>Network traffic dumper</td><td>BSD (3-clause)</td><td class="n">485KiB</td></tr>
+<tr><td><a href="packages/tmux-3.1c-1-arm64.hpkg">tmux</a></td><td class="n">3.1c-1</td><td>Terminal multiplexer</td><td>ISC</td><td class="n">324KiB</td></tr>
+<tr><td><a href="packages/unrar-6.2.10-1-arm64.hpkg">unrar</a></td><td class="n">6.2.10-1</td><td>Extracts RAR archives</td><td>UnRAR</td><td class="n">179KiB</td></tr>
 <tr><td><a href="packages/unzip-6.10c23-1-arm64.hpkg">unzip</a></td><td class="n">6.10c23-1</td><td>Info-ZIP's unzip extractor</td><td>Info-ZIP</td><td class="n">205KiB</td></tr>
+<tr><td><a href="packages/vim-9.1.1618-1-arm64.hpkg">vim</a></td><td class="n">9.1.1618-1</td><td>Vi IMproved, a programmer's text editor</td><td>Vim</td><td class="n">11MiB</td></tr>
+<tr><td><a href="packages/wget-1.24.5-1-arm64.hpkg">wget</a></td><td class="n">1.24.5-1</td><td>Retrieves files from the web</td><td>GNU GPL v3</td><td class="n">379KiB</td></tr>
+<tr><td><a href="packages/which-2.21-1-arm64.hpkg">which</a></td><td class="n">2.21-1</td><td>Shows the full path of (shell) commands</td><td>GNU GPL v3</td><td class="n">26KiB</td></tr>
 <tr><td><a href="packages/xz_utils-5.8.4-1-arm64.hpkg">xz_utils</a></td><td class="n">5.8.4-1</td><td>Free general-purpose data compression software</td><td>BSD (0-clause), GNU GPL v2</td><td class="n">307KiB</td></tr>
 <tr><td><a href="packages/zip-3.0-1-arm64.hpkg">zip</a></td><td class="n">3.0-1</td><td>Info-ZIP's zip archiver</td><td>Info-ZIP</td><td class="n">271KiB</td></tr>
 <tr><td><a href="packages/zstd-1.5.7-1-arm64.hpkg">zstd</a></td><td class="n">1.5.7-1</td><td>Zstandard, a fast real-time compression algorithm</td><td>BSD (3-clause), GNU GPL v2</td><td class="n">959KiB</td></tr>
 </tbody>
 </table></div>
-<p class="muted">26 packages · arm64 only, zlib-compressed ·
+<p class="muted">45 packages · arm64 only, zlib-compressed ·
 <a href="repo.info">repo.info</a> · <a href="repo.sha256">repo.sha256</a></p>
 </main>
 </body>
